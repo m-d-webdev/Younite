@@ -6,6 +6,7 @@ import { Ten } from "./ten_slice";
 import { start_loading, stop_loading } from './loader'
 import { getSocket } from "../config/socket";
 import { UpdateField } from "./profileSlice";
+const API_RL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export const identificat_user = async (_id) => {
     return new Promise(
@@ -24,7 +25,7 @@ export const logoutUser = createAsyncThunk(
     "logoutUser",
     (_, { rejectWithValue }) => {
         Cookies.remove("Access_token");
-        window.location.href = "http://localhost:5000/login"
+        window.location.href = `${API_RL}/login`
     }
 )
 
