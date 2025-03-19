@@ -804,3 +804,12 @@
 .cntUserImfDropdown {
     position: relative;
 }
+
+@media screen and (max-width:800px) {
+    .MainOutlintsStyle {
+        /* max-width: 1200px; */
+        overflow: auto;
+        width: 100%;
+        margin-left: 0px;
+      }
+}

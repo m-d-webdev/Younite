@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Ten } from '../slices/ten_slice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { _onClickOut } from './Abbreviator'
 import Texta from './Texta'
 
@@ -16,6 +16,7 @@ const SerachByMicro = ({ onWordIsReady }) => {
 
     const [isWantToRecord, setWantToRecord] = useState(false)
 
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
 
     const containerSercRef = useRef()
 
@@ -141,13 +142,22 @@ const SerachByMicro = ({ onWordIsReady }) => {
 
         return (
             <motion.div
-                style={{
-                    position: "absolute",
-                    top: '40px',
-                    right: "0",
-                    zIndex: 5,
-                    filter: "drop-shadow(0 -5px 8px var(--filter-color))"
-                }}
+                style={
+                    isWorkinOnPhone ?
+                        {
+                            position: "fixed",
+                            top:"25%",
+                            left:"3%"
+
+                        }
+                        :
+                        {
+                            position: "absolute",
+                            top: '40px',
+                            right: "0",
+                            zIndex: 5,
+                            filter: "drop-shadow(0 -5px 8px var(--filter-color))"
+                        }}
                 ref={containerSercRef}
 
                 className="bg-l p10 br15 c-s-s w400  "
