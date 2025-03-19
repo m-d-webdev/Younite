@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { checkTheme } from './settings';
 import Routes from './layouts/routes';
-import { RouterProvider, useNavigate } from 'react-router-dom';
+import { Router, RouterProvider, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { get_user_personal_data } from './slices/userSlice';
 import { has_access } from './config/middelwares';
 import { Ten_cmp } from "./slices/ten_slice"
@@ -29,10 +29,10 @@ import AddLink from './pages/user/profile/addLink.jsx';
 import ScrollReelsCmp from './pages/scrollReels.jsx';
 import ShareArticle from './pages/mediaShares/ShareArticle.jsx'
 import Show_sharedPosts from './pages/mediaShares/show_sharedPosts.jsx';
+import { setSidesOpen, setWinSize } from './slices/WnidowSize.js';
 
 
 function App() {
-
   const dispatch = useDispatch();
   const Ten_vsblt = useSelector(s => s.Ten.is_visible)
   const ImgsSLiderVsblity = useSelector(s => s.ImgsSlider.is_visible)
@@ -45,10 +45,9 @@ function App() {
   const CheckNotVSBL = useSelector(s => s.CheckNotReducer.isVisible)
   const isScrollReelVisible = useSelector(s => s.ScrollReels.isVisible)
   const sharePostsVisible = useSelector(s => s.SharePostReducer.isVisible)
-  const { isShowingsPost } = useSelector(s => s.SharePostReducer)
+  const { isShowingsPost } = useSelector(s => s.SharePostReducer);
 
   let InterSayincong;
-
 
 
   const Prepare_App_Env = useMemo(() => {
@@ -72,10 +71,12 @@ function App() {
   })
 
 
-
-
   useEffect(() => {
     Prepare_App_Env();
+    window.onresize = e => {
+      dispatch(setWinSize(window.innerWidth < 800))
+
+    }
     return () => {
       clearInterval(InterSayincong)
     }
@@ -112,7 +113,7 @@ function App() {
       </>
 
       <RouterProvider router={Routes} />
-      
+
       <Portals />
       <AnimatePresence >
         {

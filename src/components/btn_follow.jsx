@@ -13,7 +13,6 @@ function Btn_follow({ user_id, className }) {
         e.target.disabled = true
         setIsLodingFollo(true);
         await api.post('/user/add_follwing_relation', { following_user_id: user_id }).then(res => {
-            console.log(res);
             setFollowing(true);
             dispatch(add_following_in_local(user_id))
             setIsLodingFollo(false);
@@ -23,7 +22,6 @@ function Btn_follow({ user_id, className }) {
         e.target.disabled = true
         setIsLodingFollo(true);
         await api.post('/user/remove_follwing_relation', { following_user_id: user_id }).then(res => {
-            console.log(res);
             setFollowing(false);
             dispatch(remove_following_in_local(user_id))
             setIsLodingFollo(false);

@@ -83,7 +83,7 @@ const View_user_cmp = () => {
                                                 <path transform="translate(1273,886)" d="m0 0" />
                                             </svg>
 
-                                            {new Date(`${userData.BirthDay.split(".")[2]}-${userData.BirthDay.split(".")[1]}-${userData.BirthDay.split(".")[0]}`).toDateString()}
+                                            {new Date(`${userData.BirthDay?.split(".")[2]}-${userData.BirthDay?.split(".")[1]}-${userData.BirthDay?.split(".")[0]}`).toDateString()}
                                         </p>
                                     </div>
                                 </div>

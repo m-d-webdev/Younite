@@ -2244,10 +2244,13 @@ select {
   }
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 16px !important;
+    height: 16px !important;
   }
-
+  .svgLogo{
+    width: 30px !important; 
+    height: 30px !important; 
+  }
   .cntContactMEadia {
     width: 100%;
   }

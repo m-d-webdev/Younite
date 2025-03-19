@@ -63,7 +63,7 @@ export const Zoomer = () => {
                 style={{
                     maxWidth: '100%',
                     maxHeight: "100%",
-                    minHeight: "800px",
+                    // minHeight: "800px",
                     zIndex:10,
                     borderRadius:"10px",
 

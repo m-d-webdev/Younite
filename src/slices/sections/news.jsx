@@ -8,7 +8,7 @@ export const StartBringingNews = createAsyncThunk(
         try {
             const keysO_Search = ["africa", "morocco", "usa", "europ", "cars", "russia", "war", "asia", "brazil", "tourist", "football"]
             dispatch(start_loading())
-            const randomIndex = Math.floor(Math.random() * keysO_Search.length); // Ensure the index is an integer and within bounds
+            const randomIndex = Math.floor(Math.random() * keysO_Search.length);
             let word = keysO_Search[randomIndex];
             const NewsData = await axios.get(`https://newsapi.org/v2/everything?q=${word}&apiKey=8dc73c10f5534392b66744f737b4283c`);
             dispatch(stop_loading());

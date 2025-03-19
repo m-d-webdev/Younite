@@ -30,7 +30,7 @@ export const Abbreviator_text = ({ t, l = 200, s = '', style = {}, onFullText, o
 
                 {
                     IsShowedALl &&
-                    <motion.div
+                    <motion.pre
                         style={{
                             fontSize: "14px",
                             whiteSpace: "pre-wrap",
@@ -46,7 +46,7 @@ export const Abbreviator_text = ({ t, l = 200, s = '', style = {}, onFullText, o
                         }} onClick={HandelShowLess}>
                             Show less
                         </span>
-                    </motion.div>
+                    </motion.pre>
                 }
             </AnimatePresence>
 

@@ -2,7 +2,7 @@ import { AnimatePresence, buildTransform, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom'
-import { _onClickOut } from './Abbreviator'
+import { _onClickOut } from '../../components/Abbreviator'
 function SideBare1() {
     const params = useParams()
     const [currentPathName, setCurrentPathName] = useState(window.location.pathname);

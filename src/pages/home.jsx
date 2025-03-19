@@ -44,8 +44,13 @@ function Home() {
     }, [posts]);
 
 
+    const handelScrollMain = e => {
+        console.log(e.target.scrolTop);
+
+    }
+
     return (
-        <div className='wmia c-s-c'>
+        <div className='wmia c-s-c' onScroll={handelScrollMain}>
 
             {
                 posts?.map((p, i) => {

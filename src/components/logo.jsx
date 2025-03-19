@@ -1,14 +1,17 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 
 function logo({ className, go_main = false }) {
     const navigate = useNavigate();
+    const {  isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
+
     const handelClick = () => {
         if (go_main) navigate('/')
     }
     return (
         <div onClick={handelClick} className='r-s-e p5' style={{ cursor: "pointer" }}>
-            <svg version="1.1" viewBox="0 0 2000 2000" className={`w40 h40 ${className}`} xmlns="http://www.w3.org/2000/svg">
+            <svg version="1.1" viewBox="0 0 2000 2000" className={`${isWorkinOnPhone ? "w30 h30" :"w40 h40"} ${className} svgLogo`} xmlns="http://www.w3.org/2000/svg">
                 <path transform="translate(795,561)" d="m0 0h18l16 2 18 4 25 10 14 8 14 10 12 11 11 12 14 21 12 19 30 48 13 20 13 21 14 22 26 42 14 22 12 19 14 22 9 13v2l3-1 8-13 11-17 12-19 12-20 15-23 11-18 9-14 11-18 12-19 10-16 24-38 25-40 8-11 9-11 15-15 15-11 18-10 15-6 12-4 17-3 12-1h13l18 2 20 5 20 8 16 9 14 10 10 9 7 6 11 14 9 15 8 17 6 20 3 17 1 9v23l-3 21-6 21-8 19-12 22-15 25-17 28-10 16-13 21-15 24-12 19-14 23-9 14-10 16-15 23-14 22-16 24-11 18-16 25-15 23-12 20-22 34-15 24-32 48-13 18-10 13-9 11-11 13-12 13-24 24-11 9-8 7-15 11-15 10-15 9-29 15-19 9-27 11-36 12-24 7-29 7-31 5-18 2-18 1h-54l-24-2-44-6-23-5-25-7-29-10-23-10-19-9-18-10-21-14-10-8-10-9-10-11-11-16-8-16-7-18-5-21-2-19 1-19 4-23 6-18 10-20 12-17 12-13 13-12 13-9 14-8 17-7 19-5 18-3h25l19 3 21 7 25 12 16 8 15 6 19 5 23 3h34l24-3 19-5 12-6h2l-1-6-9-15-13-21-16-25-10-15-13-21-16-26-14-22-36-57-15-24-36-57-15-23-15-25-11-18-11-21-8-23-4-25v-23l3-21 6-20 5-12 8-15 9-13 8-10 10-10 14-11 14-9 15-7 17-6 21-4z" fill="#02AAF0" />
                 <path transform="translate(644,1117)" d="m0 0h25l19 3 21 7 25 12 16 8 15 6 19 5 23 3h34l24-3 19-5 11-5 5 1 5 10 7 10 9 16 7 14 8 23 4 16 2 19v32l-4 22-7 23-7 16-9 16-8 12-5 7h-2l-2 4-4 5h-2l-2 4-11 11-6 5h-2v2l-17 12-14 9-18 8-25 7-16 3-13 3h-14l-33-5-22-5-27-8-28-10-20-9-17-8-18-10-21-14-10-8-10-9-10-11-11-16-8-16-7-18-5-21-2-19 1-19 4-23 6-18 10-20 12-17 12-13 13-12 13-9 14-8 17-7 19-5z" fill="#0273AB" />
                 <path transform="translate(1388,979)" d="m0 0h2l2 6 1 4-10 16-10 15-12 19-16 24-11 18-16 25-15 23-12 20-22 34-15 24-32 48-13 18-10 13-4 5h-3v-9l4-7 5-8 3-5 8-8 3-6 7-8v-5l5-5h2l2-6 4-6 4-8 5-4 5-9 4-6 4-9 10-19 7-11 3-7 2-1v-2h2l2-5 6-9 10-16 9-15 10-14 7-9 8-11 4-4 7-16 7-12 9-14 9-11 6-7v-2h2l2-4 3-5 5-7z" fill="#049EDE" />
@@ -20,7 +23,10 @@ function logo({ className, go_main = false }) {
                 <path transform="translate(1484,828)" d="m0 0 4 2-4 4h-2l1 5-2 3h-2l-1-4z" fill="#059EDE" />
                 <path transform="translate(1285,600)" d="m0 0h2v2l-5 5h-2l-1 3-4 2 2-4z" fill="#049FE0" />
             </svg>
-            <h1 className='fw900 '>ounite</h1>
+            {
+                !isWorkinOnPhone &&
+                <h1 className='fw900 '>ounite</h1>
+            }
         </div>
     )
 }

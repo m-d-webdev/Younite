@@ -17,7 +17,7 @@ function ResultSearch() {
         const mostMs = Object.keys(resultSearchData).sort((a, b) => resultSearchData[b].length - resultSearchData[a].length)
         setTypeChoosed(mostMs[0]);
         setcatChoosed(resultSearchData[mostMs[0]]);
-
+        
     }, [resultSearchData]);
 
     return (

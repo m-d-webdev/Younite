@@ -27,7 +27,6 @@ export const Message_Tracker = createAsyncThunk(
         if (socket) {
 
             socket.on('friend-connected', f => {
-                console.log('user connected => ', f);
 
                 dispatch(friend_connected(f));
             })
@@ -88,12 +87,10 @@ export const Message_Tracker = createAsyncThunk(
             });
 
             socket.on('friend-blocked-me', doc => {
-                console.log('blocked', doc);
                 dispatch(friend_blocked_me(doc))
             });
 
             socket.on('friend-unblocked-me', doc => {
-                console.log('Unblocked', doc);
                 dispatch(friend_unblocked_me(doc))
             });
 
@@ -104,9 +101,7 @@ export const Message_Tracker = createAsyncThunk(
             // ---------------
             socket.on('new-notification', doc => {
                 const { contacts, blockedList } = getState().User;
-                // if (contacts.includes(n.senderId) && n.type == "new-contact-req") return
-                // if (blockedList.some(b => b.Blocked_person == n.senderId)) return
-                // console.log('new not => ', doc);
+               
                 dispatch(add_notification(doc));
             })
         }

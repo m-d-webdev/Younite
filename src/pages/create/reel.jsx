@@ -50,17 +50,16 @@ const Reel_create = () => {
                 Accept: "multipart/forma-data"
             }
         }).then(res => {
-            console.log(res.data.reel);
+
+            dispatch(stop_loading());
             dispatch(unshiftUserReel(res.data.reel))
             dispatch(open_alert([, "You reel has been uploaded successfully"]));
-            navigate('/Reels')
-            // setTimeout(() => {
-            // }, 500);
+            navigate('/Reels');
+            
         }).catch(er => {
             dispatch(stop_loading())
             dispatch(Ten([false, "Failed to upload your reel. Please try again!"]))
             console.log(er);
-
         })
     }
 

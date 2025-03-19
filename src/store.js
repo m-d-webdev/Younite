@@ -27,12 +27,13 @@ import CheckNotReducer from './slices/CheckNotif.js'
 import ScrollReels from './slices/ScrollReels.js'
 import searchSlice from './slices/search.js'
 import SharePostReducer from './slices/SahrePosSlice.js'
+import WindowSizeSlice from './slices/WnidowSize.js'
 
 
 
 
 
-// --------------
+// -----    ---------
 
 
 
@@ -62,6 +63,7 @@ const store = configureStore({
         ScrollReels,
         searchSlice,
         SharePostReducer,
+        WindowSizeSlice,
 
     }
 })
