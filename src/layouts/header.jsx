@@ -60,17 +60,17 @@ function Header() {
     return (
         <>
 
-            <header className={`wmia bg-l p5 r-b-c`} >
+            <header className={`wmia bg-l p5 r-b-c `} >
                 <Logo go_main={true} />
                 <SearchInput />
                 <div className="r-e-c">
                     <div className="c-c-c psr">
-                        <span onClick={() => { navigate('/Shares') }} className="p10 psr imgCercle mr15 bg-fourth c-c-c">
+                        <span onClick={() => { navigate('/Shares') }} className={`${isWorkinOnPhone ?"p5" :"p10"} psr imgCercle mr15 bg-fourth c-c-c`}>
                             <svg style={{ strokeWidth: 1.5 }} className='f-no' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" width={32} height={32} strokeWidth={1}> <path d="M14 20a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z"></path> <path d="M14 4a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z"></path> <path d="M6 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z"></path> <path d="M22 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z"></path> <path d="M14 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z"></path> <path d="M6 12h4"></path> <path d="M14 12h4"></path> <path d="M13.5 5.5l5 5"></path> <path d="M5.5 13.5l5 5"></path> <path d="M13.5 18.5l5 -5"></path> <path d="M10.5 5.5l-5 5"></path> <path d="M12 6v4"></path> <path d="M12 14v4"></path> </svg>
                         </span>
                     </div>
                     <div className="c-c-c psr">
-                        <span onClick={() => dispatch(open_notif_bare())} className="p10 psr imgCercle mr15 bg-fourth c-c-c">
+                        <span onClick={() => dispatch(open_notif_bare())} className={`${isWorkinOnPhone ?"p5" :"p10"} psr imgCercle mr15 bg-fourth c-c-c`}>
                             {
                                 countNewNotf > 0 &&
                                 <p className="countNews">{countNewNotf <= 9 ? countNewNotf : '+9'}</p>
@@ -85,9 +85,8 @@ function Header() {
                             <path transform="translate(962)" d="m0 0" />
                         </svg>
                     </span>
-
                 </div>
-                <Link to={"/chat"} className="p10 psr imgCercle mr15 bg-fourth c-c-c">
+                <Link to={"/chat"} className={`${isWorkinOnPhone ?"p5" :"p10"} psr imgCercle mr15 bg-fourth c-c-c`}>
                     {
                         CountMessages > 0 &&
                         <p className="countNews">{CountMessages < 99 ? CountMessages : '+99'}</p>
@@ -120,7 +119,7 @@ function Header() {
                             isLoaingUserData ?
                                 <div className="pre_elem w40 h40 imgCercle  ml10 mr20"></div>
                                 :
-                                <img onClick={() => setProfileDropDownVSBL(!ProfileDropDownVSBL)} className={`${isWorkinOnPhone ? "w20 h20 " : "w40 h40"} imgCercle  ml10 mr20`} src={profile_img} alt="" />
+                                <img onClick={() => setProfileDropDownVSBL(!ProfileDropDownVSBL)} className={`${isWorkinOnPhone ? "w30 h30 " : "w40 h40"} imgCercle  ml10 mr20`} src={profile_img} alt="" />
                         }
 
                         {

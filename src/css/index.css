@@ -6,7 +6,9 @@
   /* font-family: "42dot Sans", serif; */
   ;
   color: var(--bg-secondary);
-  font-weight: 600;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+
 }
 
 body {
@@ -43,6 +45,7 @@ body {
 .bg-fifth {
   background-color: var(--bg-fifth);
 }
+
 
 .hoverEff2 {
   opacity: .6;
@@ -407,11 +410,12 @@ button:disabled {
 }
 
 .fw600 {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .fw900 {
-  font-weight: 900;
+  font-weight: 600;
+  opacity: .8;
 }
 
 .dng svg {
@@ -516,6 +520,7 @@ i {
 h1 {
   color: var(--bg-secondary);
   font-size: 15px;
+  font-weight: 600 !important;
 }
 
 h2 {
@@ -2244,8 +2249,8 @@ select {
   }
 
   svg {
-    width: 13px !important;
-    height: 13px !important;
+    width: 15px;
+    height: 15px;
   }
 
   .svgLogo {
@@ -2298,5 +2303,5 @@ select {
     margin-left: 40px;
   }
 
-  
+
 }

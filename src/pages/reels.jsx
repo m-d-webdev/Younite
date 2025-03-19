@@ -42,8 +42,9 @@ function Reels() {
 
         if (reels.length == 0) {
             dispatch(StartBringing_Reels());
-        }
-
+        }   
+        
+        dispatch(setSidesOpen(true));
         hande_keyboardClick();
     }, [])
 

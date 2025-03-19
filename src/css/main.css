@@ -50,14 +50,14 @@
     margin-left: 14px;
 }
 
-.p7{
+.p7 {
     padding: 7px;
 }
 
 .PostImgsSection img {
     max-width: 100%;
     object-fit: cover;
-        object-position: top center;
+    object-position: top center;
     /* color: rgba(0, 0, 0, 0.47); */
     max-height: 800px;
 }
@@ -480,10 +480,11 @@
 
 }
 
-.TenDoneStyle svg{
+.TenDoneStyle svg {
     width: 15px;
     height: 15px;
 }
+
 .TenDoneStyle {
     filter: drop-shadow(10px -10px 10px var(--filter-color));
     position: fixed;
@@ -811,5 +812,10 @@
         overflow: auto;
         width: 100%;
         margin-left: 0px;
-      }
+    }
+
+    .cntReel_cmp .cnt_main__rell video {
+        height: 100%;
+    }
+
 }

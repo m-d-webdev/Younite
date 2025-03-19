@@ -16,14 +16,15 @@ const Reel = React.forwardRef(({ i, reel, h, onChoose, currentShoose }, ref) => 
     const [isVideoPlaying, setVideoPlaying] = useState(true)
     const [reel_menu_vsbl, setreel_menu_vsbl] = useState(false)
     const [reel_muted, setreel_muted] = useState(false)
-    const [reelHeight, setReelHeight] = useState(window.innerHeight - 80)
     const [num_cmnts, setnum_cmnts] = useState(reel.comments_count)
     const [isLikeVisible, setisLikeVisible] = useState(false)
     const [isShowing, setSHowing] = useState(true)
     const { isMuted } = useSelector(s => s.Reels)
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
+    const [reelHeight, setReelHeight] = useState(isWorkinOnPhone ? window.innerHeight - 40 : window.innerHeight - 80)
 
     const UpdateReelHeight = () => {
-        setReelHeight(window.innerHeight - 80);
+        setReelHeight(isWorkinOnPhone ? window.innerHeight - 40 : window.innerHeight - 80);
     };
 
     const dispatch = useDispatch()

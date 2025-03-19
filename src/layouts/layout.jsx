@@ -15,7 +15,7 @@ function Layout() {
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice)
 
-  
+
     useEffect(() => {
         window.addEventListener('resize', () => setWindowHeight(window.innerHeight))
     }, [])
@@ -36,7 +36,7 @@ function Layout() {
                 }
                 <div className="MainOutlintsStyle c-s-c"
                     style={{
-                        height: windowHeight - 80
+                        height: isWorkinOnPhone ? windowHeight - 40 : windowHeight - 80
                     }}
                 >
 
@@ -66,7 +66,6 @@ function Layout() {
                 <Phone_SideBare1 />
             }
 
-            :
 
             <AnimatePresence>
                 {
