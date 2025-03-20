@@ -14,12 +14,11 @@ const Reel = React.forwardRef(({ i, reel, h, onChoose, currentShoose }, ref) => 
 
     const CnotanerRef = useRef(null)
     const [isVideoPlaying, setVideoPlaying] = useState(true)
-    const [reel_menu_vsbl, setreel_menu_vsbl] = useState(false)
-    const [reel_muted, setreel_muted] = useState(false)
+    const [reel_menu_vsbl, setreel_menu_vsbl] = useState(false);
     const [num_cmnts, setnum_cmnts] = useState(reel.comments_count)
     const [isLikeVisible, setisLikeVisible] = useState(false)
     const [isShowing, setSHowing] = useState(true)
-    const { isMuted } = useSelector(s => s.Reels)
+    const { isMuted, isLoadingreels } = useSelector(s => s.Reels)
     const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
     const [reelHeight, setReelHeight] = useState(isWorkinOnPhone ? window.innerHeight - 40 : window.innerHeight - 80)
 
@@ -41,15 +40,17 @@ const Reel = React.forwardRef(({ i, reel, h, onChoose, currentShoose }, ref) => 
         }
 
     }
-
+    const [isReqSent, setReqSent] = useState(isLoadingreels)
     useEffect(() => {
         let observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
                     dispatch(knowTheLength()).then(res => {
                         if (i && i == res.payload - 1) {
-                            console.log(i);
-                            dispatch(getMoreReels());
+                            if (!isLoadingreels && !isReqSent) {
+                                setReqSent(true);
+                                dispatch(getMoreReels());
+                            }
                         }
                     });
                     if (onChoose) {
@@ -59,10 +60,12 @@ const Reel = React.forwardRef(({ i, reel, h, onChoose, currentShoose }, ref) => 
                     document.addEventListener("keydown", handel_keyBord)
                 } else {
                     document.removeEventListener("keydown", handel_keyBord)
-                    reelRef.current?.pause();
+                    try {
+                        reelRef.current?.pause();
+                    } catch (rtt) { }
                     clearTimeout(timeOuRmLiki);
                 }
-            }, { threshold: .8 }
+            }, { threshold: .5 }
         )
         if (CnotanerRef.current) {
             observer.observe(CnotanerRef.current)

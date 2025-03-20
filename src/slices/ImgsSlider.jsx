@@ -2,12 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import ReactDOM from 'react-dom'
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { motion, AnimatePresence, delay } from 'framer-motion'
-import { start_loading, stop_loading } from "./loader";
 import { _onClickOut, _OnContainerClickOut } from "../components/Abbreviator";
-import { Ten } from "./ten_slice";
 import { open_zoomer } from "./zoomer";
-import BtnClose from "../components/btnClose";
+import Image from "../components/Image";
 
 const ImgsSliderSlice = createSlice({
     name: "ImgsSliderSlice",
@@ -65,18 +62,9 @@ export function ImgsSlider_page() {
 
             return (
                 <div style={{ minWidth: "700px" }} className="w700 r-c-c">
-                    <motion.img src={img}
-                        initial=
-                        {{
-                            scale: .7
-                        }}
-                        animate={{
-                            scale: isChoosed ? [.6, 1] : .7,
-                            transition: {
-                                type: "spring",
-                                duration: .15
-                            }
-                        }}
+                  
+                    <Image src={img}
+                     
                         onClick={() => dispatch(open_zoomer(img))}
                         alt=""
                         ref={imsmgRef}

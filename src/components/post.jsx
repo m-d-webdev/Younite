@@ -10,6 +10,7 @@ import Quick_coment from './quick_coment'
 import User_ from './user_name'
 import Interaction_area from './Interaction_area'
 import { open_imgsSlider } from '../slices/ImgsSlider'
+import Image from './Image'
 
 
 
@@ -72,19 +73,30 @@ const Post = React.forwardRef(({ postdata }, ref) => {
                                 {
                                     postdata.image.length == 3 ?
                                         <div className={`PostImgsSection r-p-c wmia  mt10 psr  threeImgs`}>
-                                            <img loading='lazy' onClick={() => { dispatch(open_zoomer(postdata.image[0])) }} src={postdata.image[0]} className='wkhmsin hmia br10' alt="" />
-                                            <div className="c-b-c wkhmsin hmia cntTwo_secondimgs">
-                                                <img loading='lazy' onClick={() => { dispatch(open_zoomer(postdata.image[1])) }} src={postdata.image[1]} className='wmia  br10' alt="" />
-                                                <img loading='lazy' onClick={() => { dispatch(open_zoomer(postdata.image[2])) }} src={postdata.image[2]} className='wmia  br10' alt="" />
+                                            <div className="c-c-c wkhmsin hmia">
+                                                <Image loading='lazy' src={postdata.image[0]} onClick={() => { dispatch(open_zoomer(postdata.image[0])) }} className='wmia hmia br10' alt="" />
+                                            </div>
+                                            <div className="c-b-c wkhmsin hmia ">
+                                                <div className="c-c-c h-49% wmia">
+
+                                                    <Image loading='lazy' onClick={() => { dispatch(open_zoomer(postdata.image[1])) }} src={postdata.image[1]} className='wmia hmia br10' alt="" />
+                                                </div>
+                                                <div className="c-c-c h-49% wmia">
+                                                    <Image loading='lazy' onClick={() => { dispatch(open_zoomer(postdata.image[2])) }} src={postdata.image[2]} className='wmia hmia br10' alt="" />
+                                                </div>
                                             </div>
                                         </div>
                                         :
-                                        <div className={`PostImgsSection r-p-c wmia  mt10 psr threeImgs`}>
-                                            <img loading='lazy' src={postdata.image[0]} onClick={() => { dispatch(open_zoomer(postdata.image[0])) }} className='wkhmsin hmia br10' alt="" />
+                                        <div className={`PostImgsSection r-p-c  wmia  mt10 psr threeImgs`}>
+                                            <div className="c-c-c wkhmsin hmia">
+                                                <Image loading='lazy' src={postdata.image[0]} onClick={() => { dispatch(open_zoomer(postdata.image[0])) }} className='wmia hmia br10' alt="" />
+                                            </div>
                                             <div className="c-p-c wkhmsin hmia psr cntTwo_secondimgs">
-                                                <img loading='lazy' src={postdata.image[1]} onClick={() => { dispatch(open_zoomer(postdata.image[1])) }} className='wmia  br10' alt="" />
+                                                <div className="c-c-c wmia h-[48%]">
+                                                    <Image loading='lazy' src={postdata.image[1]} onClick={() => { dispatch(open_zoomer(postdata.image[1])) }} className='wmia  hmia br10' alt="" />
+                                                </div>
                                                 <div onClick={() => dispatch(open_imgsSlider(postdata.image.filter((e, index) => index > 1)))} className="c-c-c psr hkhmsin overHdn br10 CNTMorethanCount wmia">
-                                                    <img loading='lazy' src={postdata.image[2]} className='wmia br10' alt="" />
+                                                    <Image loading='lazy' src={postdata.image[2]} className='wmia br10' alt="" />
                                                     <p className='MorethanCount'> + {postdata.image.length - 2}</p>
                                                 </div>
                                             </div>
@@ -92,9 +104,11 @@ const Post = React.forwardRef(({ postdata }, ref) => {
                                 }
                             </>
                             :
-                            <div className={`PostImgsSection bg-third r-p-c wmia  mt10 psr ${postdata.image.length == 2 ? "TwoImgs" : ""}`}>
+                            <div className={`PostImgsSection bg-third wmia  mt10 psr ${postdata.image.length == 2 ? `TwoImgs c-c-c` : " r-p-c"}`}>
                                 {postdata.image.map(i =>
-                                    <img loading='lazy' src={i} key={i} onClick={() => { dispatch(open_zoomer(i)) }} className=' br10' alt="" style={{ maxWidth: "100%", minWidth: postdata.image.length == 1 ? "80%" : "" }} />
+                                    <div className={`c-c-c wmia ${postdata.image.length == 2 ? `hkhmsin ` : ""} `}>
+                                        <Image src={i} key={i} onClick={() => { dispatch(open_zoomer(i)) }} className=' br10' alt="" style={{ maxWidth: "100%" }} />
+                                    </div>
                                 )}
                             </div>
                     }

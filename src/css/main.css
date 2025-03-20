@@ -63,20 +63,21 @@
 }
 
 .PostImgsSection.TwoImgs img {
-    width: 49.5%;
+    width: 100%;
     height: 100%;
     max-height: none;
+
     /* border: solid 1px; */
 }
 
 .PostImgsSection.TwoImgs {
     display: flex;
-    height: 800px;
+    height: 600px;
 }
 
 
 .PostImgsSection.threeImgs .cntTwo_secondimgs img {
-    height: 49.7% !important;
+    /* height: 49.7% !important; */
     object-fit: cover;
     border-radius: 10px;
 }
@@ -804,6 +805,35 @@
 
 .cntUserImfDropdown {
     position: relative;
+}
+
+
+.imgNotLoadingYet {
+    position: absolute;
+    /* content: ""; */
+    width: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 3px solid var(--bg-secondary);
+    /* border-top: 3px solid red; */
+    border-right: 3px solid transparent;
+    box-sizing: border-box;
+    /* z-index: 10 ; */
+    animation: rotationImg 1s linear infinite;
+}
+
+
+@keyframes rotationImg {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media screen and (max-width:800px) {
