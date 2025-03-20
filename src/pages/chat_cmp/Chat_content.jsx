@@ -24,8 +24,9 @@ function Chat_content() {
         sliderChatRef.current?.scroll({ top: sliderChatRef.current.scrollHeight, left: 0 });
         setGessMessage('')
     }, [focused_data]);
-
-    return (
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
+    
+    return  (
         <div className='wmia bg-fifth  c-b-s p5  hmia '>
             <div className="wmia r-b-c">
                 {
@@ -34,7 +35,10 @@ function Chat_content() {
                         :
                         <div className=""></div>
                 }
+                {
+                    !isWorkinOnPhone &&
                 <BtnSyncMessages />
+                }
             </div>
             {
                 focused_data ?
@@ -155,9 +159,9 @@ function Chat_content() {
                     </> :
                     <div className='wmia hmia c-c-c'>
                         <img className='w500' src="/media/5911276_2992779-removebg-preview (1).png" alt="" />
-                        <div className="r-s-e w600">
+                        <div className="r-s-e max-w-screen-sm w-full">
                             <Logo className="w100 h100" />
-                            <p className='fw600 text-center mb5' style={{ fontSize: "15px" }}>
+                            <p className='fw600 text-center mb5 max-w-full' style={{ fontSize: "15px" , maxWidth:"90%" }}>
                                 Welcome to Younite for Chat! Send a message, and your friends will receive it instantly. Please note that messages are currently not encrypted, so avoid sharing sensitive information.
                             </p>
                         </div>

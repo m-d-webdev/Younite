@@ -20,7 +20,7 @@ function Layout() {
         window.addEventListener('resize', () => setWindowHeight(window.innerHeight))
     }, [])
     const params = useParams();
-    const { following } = useSelector(s => s.User)
+
     useEffect(() => {
         setcurrentPath(window.location.pathname)
     }, [params])
@@ -61,7 +61,7 @@ function Layout() {
                 }
             </main >
             {
-                isWorkinOnPhone && !["/Reels"].includes(currentPath) &&
+                isWorkinOnPhone && !["/Reels","/chat"].includes(currentPath) &&
 
                 <Phone_SideBare1 />
             }

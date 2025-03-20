@@ -12,6 +12,7 @@ function Chat_imgs({ chat, i }) {
     useEffect(() => {
         setcounterNoneRead(THisChat.reduce((c, e) => (!e.viewed && e.recieverId == _id) ? c + 1 : c, 0))
     }, [THisChat]);
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
 
     const handelSendFocus = async () => {
         if (focused_data?._id != chat._id) {
@@ -35,7 +36,7 @@ function Chat_imgs({ chat, i }) {
                     delay: i * 0.05
                 }
             }}
-            onClick={handelSendFocus} className={` mb20 psr  r-c-c  listChat hoverEff1 ${counterNoneRead > 0 ? " active" : ""} `}>
+            onClick={handelSendFocus} className={` ${isWorkinOnPhone  ?"mr10":"mb20"} psr  r-c-c  listChat hoverEff1 ${counterNoneRead > 0 ? " active" : ""} `}>
             {
                 !contacts.includes(chat._id) &&
                 <svg

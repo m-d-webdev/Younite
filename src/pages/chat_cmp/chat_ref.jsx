@@ -12,12 +12,13 @@ function Chat_ref({ setSenserTop, chat, i }) {
     let [counterNoneRead, setcounterNoneRead] = useState(THisChat.reduce((c, e) => e.viewed ? c + 1 : c, 0))
     const { focused_data } = useSelector(s => s.ChatReducer);
     const [isOpnedThisChat, setOpenedThisChat] = useState(focused_data?._id == chat._id)
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
+
     useEffect(() => {
         setcounterNoneRead(THisChat.reduce((c, e) => (!e.viewed && e.recieverId == _id) ? c + 1 : c, 0))
     }, [THisChat]);
-    // useEffect(()=>{
-    //     if (isOpnedThisChat) 
-    // } ,[])
+
+
     useEffect(() => {
         setOpenedThisChat(focused_data?._id == chat._id);
         (focused_data?._id == chat._id) && setSenserTop(i)
@@ -66,7 +67,7 @@ function Chat_ref({ setSenserTop, chat, i }) {
                 </svg>
 
             }
-            <img src={chat?.profile_img} alt="" style={{ minWidth: "40px" }} className="w40 h40 imgCercle bg-d" />
+            <img src={chat?.profile_img} alt="" style={{ minWidth: isWorkinOnPhone ? "30px" : "40px" }} className={`${isWorkinOnPhone ? "w30 h30" : "w40 h40"} imgCercle bg-d`} />
             <div className="r-b-s hmia ml5 wmia overHdn" style={{ maxWidth: "90%" }} >
                 <div className="c-s-s wmia" style={{ maxWidth: "80%" }}>
                     <div className="ovrHdn mb5 wmia r-s-c">

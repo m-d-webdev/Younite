@@ -4,6 +4,7 @@ import Chat_content from './chat_cmp/Chat_content'
 import { useDispatch, useSelector } from 'react-redux'
 import { focusOnUser } from '../slices/chatSlice'
 import { AnimatePresence, motion } from 'framer-motion'
+import Phone_chats_ref from './chat_cmp/Phone_chats_ref'
 
 
 
@@ -12,6 +13,9 @@ function Chat_page() {
     const MessgasPageRef = useRef(null);
     const dispatch = useDispatch()
     const [isFormedWarning, setisFormedWarning] = useState(localStorage.getItem("saveMessagesWarning") || false)
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
+
+
     useEffect(() => {
         const observer = new IntersectionObserver(([e]) => {
             if (!e.isIntersecting) {
@@ -67,24 +71,49 @@ function Chat_page() {
         )
     }
     return (
-        <div ref={MessgasPageRef} className='wmia r-s-s ' style={{ height: "100%" }}>
+        <>
             {
-                useMemo(() => {
-                    return <Chats_refs />
-                }, [chats_refs])
+                isWorkinOnPhone ?
+                    <div ref={MessgasPageRef} className='wmia c-s-s ' style={{ height: "100%" }}>
+                        {
+                            useMemo(() => {
+                                return <Phone_chats_ref />
+                            }, [chats_refs])
+                        }
+                        {
+                            useMemo(() =>
+                                <Chat_content />
+                                , [focused_data])
+                        }
+                        <AnimatePresence>
+                            {
+                                !isFormedWarning &&
+                                <WarningSaveMessage />
+                            }
+                        </AnimatePresence>
+                    </div>
+                    :
+                    <div ref={MessgasPageRef} className='wmia r-s-s ' style={{ height: "100%" }}>
+                        {
+                            useMemo(() => {
+                                return <Chats_refs />
+                            }, [chats_refs])
+                        }
+                        {
+                            useMemo(() =>
+                                <Chat_content />
+                                , [focused_data])
+                        }
+                        <AnimatePresence>
+                            {
+                                !isFormedWarning &&
+                                <WarningSaveMessage />
+                            }
+                        </AnimatePresence>
+                    </div>
             }
-            {
-                useMemo(() =>
-                    <Chat_content />
-                    , [focused_data])
-            }
-            <AnimatePresence>
-                {
-                    !isFormedWarning &&
-                    <WarningSaveMessage />
-                }
-            </AnimatePresence>
-        </div>
+        </>
+
     )
 }
 
