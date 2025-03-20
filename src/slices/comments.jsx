@@ -178,15 +178,17 @@ export function Comments_page() {
                             height: "70%",
                             position: "absolute",
                             bottom: "0",
-                            left: "0"
+                            left: "0",
+                            padding: "5px"
                         }
                         : {
                             maxHeight: "85%",
                             overflow: "auto",
+                            padding: "10px",
                             minHeight: "50%",
                             maxWidth: "700px"
                         }}
-                className="wmia scrl_none psr p15 br20 bg-l c-s-s"
+                className="wmia scrl_none psr  br20 bg-l c-s-s"
             >
                 <button
                     onClick={() => dispatch(close_comments())}
@@ -214,7 +216,7 @@ export function Comments_page() {
                 }
                 <div
                     ref={list_cmntRef}
-                    className="cntCmnts wmia mt20 p10"
+                    className="cntCmnts wmia mt20"
                     style={{
                         height: "100%",
                         maxHeight: "100%",
@@ -225,8 +227,8 @@ export function Comments_page() {
                     {
                         NoComments ?
                             <div className="mrauto c-c-c wmia">
-                                <video src="media/NoResult.mp4" loop muted autoPlay className="wmia" style={{ maxHeight: "200px" }}></video>
-                                <h1 className="mt20">Nobody has commented yet. Be the first to share your thoughts!</h1>
+                                <video src="media/NoResult.mp4" loop muted autoPlay className={`${isWorkinOnPhone ?"w-6/12":"wmia"}`} style={{ maxHeight: "200px" }}></video>
+                                <h1 className="mt20 text-center">Nobody has commented yet. Be the first to share your thoughts!</h1>
                             </div>
                             :
                             comments &&

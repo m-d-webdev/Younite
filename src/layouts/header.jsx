@@ -58,8 +58,8 @@ function Header() {
 
 
     return (
-        <>
-
+        <>  
+    
             <header className={`wmia bg-l  r-b-c `} >
                 <Logo go_main={true} />
                 <SearchInput />

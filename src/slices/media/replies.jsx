@@ -98,6 +98,7 @@ export function Replies_page() {
     const { comment_data, replies, is_loading_replies } = useSelector(s => s.Replies)
     const { profile_img } = useSelector(s => s.User)
     const [noReplies, set_NoReplies] = useState(false)
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
 
 
 
@@ -153,7 +154,7 @@ export function Replies_page() {
                 }}
 
                 ref={ContainerRepliesRef}
-                className='bg-l p20  scrl_none c-s-s psr br20 wmia '
+                className='bg-l p5  scrl_none c-s-s psr br20 wmia '
                 style={{
                     maxWidth: "600px",
                     maxHeight: "65%",
@@ -202,8 +203,8 @@ export function Replies_page() {
                                 {
                                     noReplies ?
                                         <div className="mrauto mt20 c-c-c wmia">
-                                            <video src="media/NoResult.mp4" loop muted autoPlay className="wmia" style={{ maxHeight: "200px" }}></video>
-                                            <h1 className="mt20">Nobody has replied yet. Be the first to share your reply!</h1>
+                                            <video src="media/NoResult.mp4" loop muted autoPlay className={`${isWorkinOnPhone ? "w-8/12" : "wmia"} `} style={{ maxHeight: "200px" }}></video>
+                                            <h1 className="mt20 text-center">Nobody has replied yet. Be the first to share your reply!</h1>
                                         </div>
                                         :
                                         replies.map((e, index) =>
@@ -246,14 +247,14 @@ export function Replies_page() {
                                             resize: "none",
                                             padding: "0",
                                             minHeight: "0"
-                                            
+
                                         }}
                                         value={content}
-                                       
+
                                         onChange={handelWriteReply}
                                         placeholder={`Reply to ${comment_data.author?.FirstName}'s comment`}
-                                        />
-                                   
+                                    />
+
                                     <div className="r-e-c">
                                         <Emoji_btn />
 

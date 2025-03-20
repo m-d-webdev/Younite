@@ -1,20 +1,20 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, {  useRef } from 'react'
 import { motion } from 'framer-motion'
 import ReactDOM from 'react-dom'
-import { connect, useDispatch, useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
 import BtnClose from './btnClose';
 import { BringViewUserBlogs, BringViewUserFolloers, BringViewUserFollowings, BringViewUserPosts, BringViewUserReels, close_view_user } from '../slices/viewUser';
 import L_loader from './L_loader';
 import { open_zoomer } from '../slices/zoomer';
 import { _OnContainerClickOut, Abbreviator_text, GetShortNum } from './Abbreviator';
 import Btn_follow from './btn_follow';
-import Btn_open_sp_chat from './btn_open_sp_chat';
-import Report_friend from './report_friend';
 import { open_reportCmp } from '../slices/ReportSlice';
 import Btn_addToContact from './btn_addToContact';
 const View_user_cmp = () => {
     const ViewUserRef = useRef();
     const dispatch = useDispatch();
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
+
     const { userData, isLodingViewUserData } = useSelector(s => s.ViewUser)
     return ReactDOM.createPortal(
         <div className='backendMer'
@@ -35,7 +35,7 @@ const View_user_cmp = () => {
                     y: 200,
                     opacity: 0
                 }}
-                className="w500  br10 bg-l p20 psr c-c-s">
+                className={`${isWorkinOnPhone ? "w-[95%]" : "w500"}  br10 bg-l p20 psr c-c-s`}>
                 <BtnClose onClick={() => dispatch(close_view_user())} />
                 {
                     isLodingViewUserData ?
@@ -95,7 +95,7 @@ const View_user_cmp = () => {
                             </div>
 
 
-                            <div className="mt20 r-p-c  p10 wmia br20">
+                            <div className={`mt20 ${isWorkinOnPhone ?"":"r-p-c"}   p10 wmia br20`}>
                                 <div className='p5 cntUserSharing  psr curP border pl15 pr15  r-c-c br20 ' style={{}}>
                                     <p> <strong className='fw900 fs14 c-d mr5'> {GetShortNum((+userData.postsCount + userData.ReelsCount + userData.blogsCount))} </strong>sharing</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={{ fill: "none" }} viewBox="0 0 24 24" className='ml10 ' stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" width={32} height={32} strokeWidth={1.25}> <path d="M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path> <path d="M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path> <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path> <path d="M8.7 10.7l6.6 -3.4"></path> <path d="M8.7 13.3l6.6 3.4"></path> </svg>
@@ -146,13 +146,13 @@ const View_user_cmp = () => {
                                 </div>
                                 <span
                                     onClick={() => dispatch(BringViewUserFolloers(userData._id))}
-                                    className='p5  curP border pl15 pr15  r-c-c br20 ' style={{}}>
+                                    className='p5  curP border pl15 pr15 mt5 r-c-c br20 ' style={{}}>
                                     <p>  <strong className='fw900 fs14 c-d mr5'> {GetShortNum(userData.followersCount)}</strong> follower</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={{ fill: "none" }} className='ml10 ' viewBox="0 0 24 24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" width={32} height={32} strokeWidth={1.25}> <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path> <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path> <path d="M16 3.13a4 4 0 0 1 0 7.75"></path> <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path> </svg>
                                 </span>
                                 <span
                                     onClick={() => dispatch(BringViewUserFollowings(userData._id))}
-                                    className='p5  curP border pl15 pr15  r-c-c br20 ' style={{}}>
+                                    className='p5  curP border pl15 pr15 mt5 r-c-c br20 ' style={{}}>
                                     <p>  <strong className='fw900 fs14 c-d mr5'> {GetShortNum(userData.followingCount)} </strong> following</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" className='ml10 ' viewBox="0 0 24 24" style={{ fill: "none" }} stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" > <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /> <path d="M6 21v-2a4 4 0 0 1 4 -4h3" /> <path d="M16 22l5 -5" /> <path d="M21 21.5v-4.5h-4.5" /> </svg>
                                 </span>
@@ -167,7 +167,7 @@ const View_user_cmp = () => {
                                     />
                                 </div>
                             }
-                            <Btn_addToContact contactId={userData._id}  className={'wmia border mt50'}/>
+                            <Btn_addToContact contactId={userData._id} className={'wmia border mt20'} />
                             <Btn_follow className={'wmia p10 mt10 bg-rev-d'} user_id={userData._id} />
                             <div className="r-s-c mt20 hoverEff2" >
 

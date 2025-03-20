@@ -1,10 +1,10 @@
-import React ,{ useState, useEffect, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Abbreviator_text, GetShortNum } from './Abbreviator'
+import { Abbreviator_text } from './Abbreviator'
 
 import { Post_menu } from "../slices/media/posts_menu"
 import { AnimatePresence } from 'framer-motion'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { open_zoomer } from '../slices/zoomer'
 import Quick_coment from './quick_coment'
 import User_ from './user_name'
@@ -14,11 +14,13 @@ import { open_imgsSlider } from '../slices/ImgsSlider'
 
 
 const Post = React.forwardRef(({ postdata }, ref) => {
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
+
     const dispatch = useDispatch()
     const [MenuPost_vsbl, setMenuPost_vsbl] = useState(false)
     const [num_cmnts, setnum_cmnts] = useState(postdata.comments_count)
     return (
-        <div ref={ref} className='wmia bg-l  mt20  c-s-s mb-10 drop-shadow-sm p10 br10  Post_element' style={{ maxWidth: "700px" }}>
+        <div ref={ref} className={`wmia bg-l  mt20  c-s-s mb10 drop-shadow-sm ${isWorkinOnPhone ? "p5" : "p10"} br10  Post_element`} style={{ maxWidth: "700px" }}>
             <div className="PosterSection wmia r-b-c">
                 <div className="r-s-c">
                     <User_ className={''} date={postdata.createdAt} id={postdata.authorId} img_url={postdata.author.profile_img} name={`${postdata.author.LastName} ${postdata.author.FirstName}`} />
@@ -82,7 +84,7 @@ const Post = React.forwardRef(({ postdata }, ref) => {
                                             <div className="c-p-c wkhmsin hmia psr cntTwo_secondimgs">
                                                 <img loading='lazy' src={postdata.image[1]} onClick={() => { dispatch(open_zoomer(postdata.image[1])) }} className='wmia  br10' alt="" />
                                                 <div onClick={() => dispatch(open_imgsSlider(postdata.image.filter((e, index) => index > 1)))} className="c-c-c psr hkhmsin overHdn br10 CNTMorethanCount wmia">
-                                                    <img  loading='lazy' src={postdata.image[2]} className='wmia br10' alt="" />
+                                                    <img loading='lazy' src={postdata.image[2]} className='wmia br10' alt="" />
                                                     <p className='MorethanCount'> + {postdata.image.length - 2}</p>
                                                 </div>
                                             </div>
