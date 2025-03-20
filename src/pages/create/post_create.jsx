@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import api from "../../config/axios"
 import { useDispatch, useSelector } from 'react-redux'
 import EmojisBtn from '../../components/emoji_btn'
@@ -8,6 +8,47 @@ import { Ten } from '../../slices/ten_slice'
 import { useNavigate } from 'react-router-dom'
 import { open_alert } from "../../slices/alert_cmp"
 import { motion, AnimatePresence } from 'framer-motion'
+const CntPostImg = ({ url, isn, postImgs, setpostImgs }) => {
+    const [isVisible, setisVisible] = useState(true)
+    const handelRemImg = () => {
+        setisVisible(false)
+        setTimeout(() => {
+            setpostImgs(postImgs.filter((e, index) => index != isn))
+        }, 200)
+    }
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
+
+    return useMemo(() => (
+        <div
+            className={`psr ${isWorkinOnPhone ? "w-full" : "wkhmsin"}   overHdn mb15`} key={isn} style={isWorkinOnPhone ? {} : { maxWidth: "500px" }}>
+            <button onClick={handelRemImg} className='btnClose hoverEff2 br10  p5 bg-rl'>
+                <svg style={{ fill: "red" }} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
+            </button>
+            <AnimatePresence>
+                {
+                    isVisible &&
+                    <motion.img
+                        animate={{
+                            scale: [.4, 1],
+                            opacity: [0, 1],
+                            y: [100, 0]
+                        }}
+                        exit={{
+                            scale: [1, .8],
+                            opacity: [1, 0],
+                            y: [0, 100]
+                        }}
+                        onClick={() => dispatch(open_zoomer(url))}
+                        style={{
+                            objectFit: "cover"
+                        }}
+                        className='wmia hmia ' src={url} key={url} />
+                }
+            </AnimatePresence>
+
+        </div>
+    ), [])
+}
 function Create_Post() {
     const { profile_img, FirstName, LastName } = useSelector(s => s.User);
 
@@ -18,46 +59,7 @@ function Create_Post() {
     const [isSendingPost, setSendingPost] = useState(false);
 
 
-    const CntPostImg = React.memo(({ url, isn }) => {
-        const [isVisible, setisVisible] = useState(true)
-        const handelRemImg = () => {
-            setisVisible(false)
-            setTimeout(() => {
-
-                setpostImgs(postImgs.filter((e, index) => index != isn))
-            }, 200)
-        }
-        return (
-            <div
-                className="psr wkhmsin h500 overHdn mb15" key={isn} style={{ maxWidth: "500px" }}>
-                <button onClick={handelRemImg} className='btnClose hoverEff2 br10  p5 bg-rl'>
-                    <svg style={{ fill: "red" }} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" /></svg>
-                </button>
-                <AnimatePresence>
-                    {
-                        isVisible &&
-                        <motion.img
-                            animate={{
-                                scale: [.4, 1],
-                                opacity: [0, 1],
-                                y: [100, 0]
-                            }}
-                            exit={{
-                                scale: [1, .8],
-                                opacity: [1, 0],
-                                y: [0, 100]
-                            }}
-                            onClick={() => dispatch(open_zoomer(url))}
-                            style={{
-                                objectFit: "cover"
-                            }}
-                            className='wmia hmia ' src={url} key={url} />
-                    }
-                </AnimatePresence>
-
-            </div>
-        )
-    }, [])
+            
 
     const navigate = useNavigate()
 
@@ -99,7 +101,7 @@ function Create_Post() {
     }
 
     return (
-        <div className='wmia c-s-s p20  ' style={{maxWidth:"1000px"}}>
+        <div className='wmia c-s-s p20  ' style={{ maxWidth: "1000px" }}>
             <div className="r-s-s wmia">
                 <motion.img animate={{ scale: [.4, 1], transition: { duration: .5 } }} src={profile_img} alt="" className="w60 h60 imgCercle" />
                 <h1 className=' fw900 ml10'>{FirstName} {LastName}</h1>
@@ -135,7 +137,7 @@ function Create_Post() {
                     </motion.textarea>
                 </div>
                 {
-                    postImgs.length > 0 &&
+
                     <div
                         style={{
                             border: "solid 1px var(--border-color)"
@@ -144,10 +146,12 @@ function Create_Post() {
                         {
                             postImgs.map((i, index) => {
                                 const url = URL.createObjectURL(i);
-                                return <CntPostImg url={url} isn={index} />
+                                return <CntPostImg url={url} isn={index} setpostImgs={setpostImgs} postImgs={postImgs} />
                             })
                         }
                     </div>
+
+
                 }
                 <motion.div
                     animate={{ y: [50, 0], opacity: [0, 1], transition: { duration: .6 } }}

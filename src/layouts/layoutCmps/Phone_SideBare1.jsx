@@ -24,7 +24,7 @@ function Phone_SideBare1() {
     useEffect(() => {
         Create_linksVSBL && linksRef.current && _onClickOut(linksRef.current, () => setCreate_linksVSBL(false))
     }, [Create_linksVSBL]);
-
+    
 
     const Create_links = () => {
 
@@ -35,7 +35,7 @@ function Phone_SideBare1() {
                     // height: 0,
                     scaleY: .5,
                     opacity: 0,
-                    transformOrigin: "top center"
+                    transformOrigin: "bottom right"
                 }}
                 exit={{
                     // height: 0,
@@ -46,9 +46,9 @@ function Phone_SideBare1() {
                     height: "auto",
                     opacity: 1,
                     scaleY: 1,
-                    transformOrigin: "top center"
+                    transformOrigin: "bottom right"
                 }}
-                className="p10 createLinksStyle  bg-l br20 c-c-c">
+                className="p10   bg-l w150  absolute right-0 bottom-0 c-c-c">
                 < Link
                     to={"/create/moment"}
                     className='r-s-c p10 br10 hoverEff1 wmia' >
@@ -133,7 +133,7 @@ function Phone_SideBare1() {
                         style={{
                             padding: "4px",
                             position: "fixed",
-                            bottom: 3, left: 0,
+                            bottom: 0, left: 0,
                             zIndex: 2
                         }}>
 

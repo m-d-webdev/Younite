@@ -2,13 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Quicksand", serif;
-  /* font-family: "42dot Sans", serif; */
-  ;
+
   color: var(--bg-secondary);
   font-weight: 500;
   font-family: "Poppins", sans-serif;
-
+  
 }
 
 body {

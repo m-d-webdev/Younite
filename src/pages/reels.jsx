@@ -15,12 +15,6 @@ function Reels() {
     const Reels_containerRef = useRef(null);
     const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
 
-    useEffect(() => {
-        if (isWorkinOnPhone) {
-
-        }
-    }, [isWorkinOnPhone]);
-
 
     const hande_keyboardClick = () => {
         document.addEventListener("keydown", (e) => {
@@ -44,19 +38,12 @@ function Reels() {
             dispatch(StartBringing_Reels());
         }   
         
-        dispatch(setSidesOpen(true));
         hande_keyboardClick();
     }, [])
 
 
     const handelScroll = (e) => {
-        if (scrollTop < e.target.scrollTop) {
-            dispatch(setSidesOpen(true));
-        }
-        else {
-            dispatch(setSidesOpen(false));
-        }
-
+        
         setScrollTOP(e.target.scrollTop);
 
     }

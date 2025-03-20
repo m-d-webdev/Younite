@@ -109,6 +109,7 @@ export function Comments_page() {
     const [content, setcontent] = useState('')
     const [NoComments, set_NoComments] = useState(false)
     const [isSendingComment, setSendingCmnt] = useState(false)
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
 
     const handelWriteComment = e => {
         if (e.target.scrollHeight < 200) {
@@ -170,12 +171,21 @@ export function Comments_page() {
                 }}
 
 
-                style={{
-                    maxHeight: "85%",
-                    overflow: "auto",
-                    minHeight: "50%",
-                    maxWidth: "700px"
-                }}
+                style={
+                    isWorkinOnPhone ?
+                        {
+                            width: "100%",
+                            height: "70%",
+                            position: "absolute",
+                            bottom: "0",
+                            left: "0"
+                        }
+                        : {
+                            maxHeight: "85%",
+                            overflow: "auto",
+                            minHeight: "50%",
+                            maxWidth: "700px"
+                        }}
                 className="wmia scrl_none psr p15 br20 bg-l c-s-s"
             >
                 <button

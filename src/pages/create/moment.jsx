@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react'
 import api from "../../config/axios"
 import { motion, AnimatePresence } from 'framer-motion'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ReactDOM from 'react-dom'
 import BTN_CLOSE from '../../components/btnClose'
 import Texta from '../../components/Texta'
@@ -12,6 +12,7 @@ export default function Moment_create() {
   const [isCreatTexVSBL, setisCreatTexVSBL] = useState(false)
   const [isCreatImageMomentVSBL, setisCreatImageMomentVSBL] = useState(false)
   const [isCreatVedioMomentVSBL, setisCreatVedioMomentVSBL] = useState(false)
+  const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
 
   const dispatch = useDispatch()
 
@@ -50,7 +51,7 @@ export default function Moment_create() {
       };
 
       const InptRef = useRef(null)
-      
+
       useEffect(() => {
         InptRef.current.style.height = "auto"
         InptRef.current.style.height = `${InptRef.current.scrollHeight}px`
@@ -685,17 +686,20 @@ export default function Moment_create() {
           }}
         >Tell Your Story</motion.h1>
         </motion.div>
-        <motion.img
-          animate={{
-            scale: [.8, 1],
-            y: [100, 0],
-            opacity: [0, 1],
-            transition: {
-              delay: .2
-            }
-          }}
-          src="/media/11375601_4735240-removebg-preview.png" alt="" />
 
+        {
+          !isWorkinOnPhone &&
+          <motion.img
+            animate={{
+              scale: [.8, 1],
+              y: [100, 0],
+              opacity: [0, 1],
+              transition: {
+                delay: .2
+              }
+            }}
+            src="/media/11375601_4735240-removebg-preview.png" alt="" />
+        }
       </div>
       <div className="c-c-c mt20 wmia" style={{ maxWidth: "500px" }}>
         <motion.button

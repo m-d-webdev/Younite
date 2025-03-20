@@ -34,6 +34,7 @@ const Reel_create = () => {
     const [description, setDescription] = useState('');
     const [video, setvideo] = useState(null);
     const [currentSteps, setCurrentStep] = useState(0)
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -55,7 +56,7 @@ const Reel_create = () => {
             dispatch(unshiftUserReel(res.data.reel))
             dispatch(open_alert([, "You reel has been uploaded successfully"]));
             navigate('/Reels');
-            
+
         }).catch(er => {
             dispatch(stop_loading())
             dispatch(Ten([false, "Failed to upload your reel. Please try again!"]))
@@ -118,21 +119,24 @@ const Reel_create = () => {
 
 
                     </motion.div>
-                    <motion.img
-                        initial={{
-                            opacity: 0,
-                            // scale: ,
-                            y: 100
-                        }}
-                        animate={{
-                            opacity: 1,
-                            scale: 1,
-                            y: 0,
-                            transition: {
-                                delay: .6
-                            }
-                        }}
-                        src="../media/rb_5524.png" className='h500' alt="" />
+                    {
+                        !isWorkinOnPhone &&
+                        < motion.img
+                            initial={{
+                                opacity: 0,
+                                // scale: ,
+                                y: 100
+                            }}
+                            animate={{
+                                opacity: 1,
+                                scale: 1,
+                                y: 0,
+                                transition: {
+                                    delay: .6
+                                }
+                            }}
+                            src="../media/rb_5524.png" className='h500' alt="" />
+                    }
 
                 </div>
 

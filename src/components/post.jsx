@@ -18,7 +18,7 @@ const Post = React.forwardRef(({ postdata }, ref) => {
     const [MenuPost_vsbl, setMenuPost_vsbl] = useState(false)
     const [num_cmnts, setnum_cmnts] = useState(postdata.comments_count)
     return (
-        <div ref={ref} className='wmia bg-l  mt20  c-s-s mb50 p10 br10  Post_element' style={{ maxWidth: "700px" }}>
+        <div ref={ref} className='wmia bg-l  mt20  c-s-s mb-10 drop-shadow-sm p10 br10  Post_element' style={{ maxWidth: "700px" }}>
             <div className="PosterSection wmia r-b-c">
                 <div className="r-s-c">
                     <User_ className={''} date={postdata.createdAt} id={postdata.authorId} img_url={postdata.author.profile_img} name={`${postdata.author.LastName} ${postdata.author.FirstName}`} />

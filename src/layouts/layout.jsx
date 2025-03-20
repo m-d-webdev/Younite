@@ -61,7 +61,7 @@ function Layout() {
                 }
             </main >
             {
-                isWorkinOnPhone &&
+                isWorkinOnPhone && !["/Reels"].includes(currentPath) &&
 
                 <Phone_SideBare1 />
             }

@@ -60,7 +60,7 @@ function Header() {
     return (
         <>
 
-            <header className={`wmia bg-l p5 r-b-c `} >
+            <header className={`wmia bg-l  r-b-c `} >
                 <Logo go_main={true} />
                 <SearchInput />
                 <div className="r-e-c">

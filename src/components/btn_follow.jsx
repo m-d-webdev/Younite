@@ -39,7 +39,7 @@ function Btn_follow({ user_id, className }) {
                         // animate={{
                         //     y:[10 ,-10 ,0],
                         // }}
-                        className={`fw900 ${className}`}
+                        className={` ${className}`}
                         style={{
 
                             cursor: "pointer",
@@ -75,7 +75,7 @@ function Btn_follow({ user_id, className }) {
                     <>
 
                         <motion.button
-                            className={` fw900  ${className}`}
+                            className={`   ${className}`}
                             style={{
                                 cursor: "pointer",
                                 // border: className == "c-rl" ? "solid 1px #ffffff9f" : "solid 1px var(--border-color)",
