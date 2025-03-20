@@ -74,7 +74,7 @@ function Chat_content() {
                             </div>
                         }
 
-                        <div ref={sliderChatRef} style={{ maxHeight: "100%", overflow: "auto" }} className="wmia p20  hmia  scrl_none c-s-s">
+                        <div ref={sliderChatRef} style={{ maxHeight: "100%", overflow: "auto" }} className={`wmia ${isWorkinOnPhone ? "p5" :"p20"}   hmia  scrl_none c-s-s`}>
                             {
                                 isLoadingChat ?
                                     <div className="wmia hmia c-c-c">

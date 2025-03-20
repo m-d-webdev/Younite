@@ -23,17 +23,18 @@ function Chat_header() {
         }
 
     }, [Contact_menuVsbl])
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
 
     return (
         <motion.div
             className='wmia  bg-l  p10 br10 r-b-c'>
             <div className="r-s-s">
 
-                <motion.img onClick={() => dispatch(BringViewUserData(focused_data._id))} src={focused_data.profile_img} className='w40 h40 imgCercle' alt="" />
+                <motion.img onClick={() => dispatch(BringViewUserData(focused_data._id))} src={focused_data.profile_img} className={`${isWorkinOnPhone ? "w30 h30" : "w40 h40"} imgCercle`} alt="" />
                 <div className="c-s-s">
-                    <h1 className='ml10 fw900'
-                        style={{ fontSize: "15px" }}
-                    >{focused_data.FirstName} {focused_data.LastName}</h1>
+                    <strong className='ml10 '
+                        style={{ fontSize: isWorkinOnPhone ? "13px" : "15px" }}
+                    >{focused_data.FirstName} {focused_data.LastName}</strong>
                     {
                         isConnected ?
                             <span
@@ -69,11 +70,15 @@ function Chat_header() {
                         }
                     </AnimatePresence>
                 </div>
+
                 <button
                     onClick={() => dispatch(focusOnUser(null))}
                     className='border curP br5'>
                     <svg className='mr5' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{ fill: "none" }} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" width={32} height={32} strokeWidth={1.25}> <path d="M9 12h6"></path> <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"></path> </svg>
-                    Close this chat
+                    {
+                        !isWorkinOnPhone &&
+                        "Close this chat"
+                    }
                 </button>
             </div>
         </motion.div>

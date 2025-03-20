@@ -4,9 +4,12 @@ import { Abbreviator_text, TimeAgo } from '../../components/Abbreviator';
 import { motion } from 'framer-motion'
 const Text_message = ({ t }) => {
     // console.log(t);
+
     const { _id } = useSelector(s => s.User);
     const { focused_data } = useSelector(s => s.ChatReducer)
     const isMyMessage = t.senderId == _id;
+    const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
+
     return (
         <motion.div
             className={`wmia  mb20  ${!isMyMessage ? "r-s-s" : "r-e-s"} `}>
@@ -38,12 +41,12 @@ const Text_message = ({ t }) => {
                     <div className="r-s-c">
                         {
                             isMyMessage &&
-                            <p style={{ opacity: ".8", color: t.viewed ? "var(--bg-blue)" : " var(--bg-secondary)" ,fontSize: "12px" }} className='mt5  ml10 mr10'>{
+                            <p style={{ opacity: ".8", color: t.viewed ? "var(--bg-blue)" : " var(--bg-secondary)", fontSize: isWorkinOnPhone ? "9px  " : "12px" }} className='mt5  ml10 mr10'>{
                                 t.viewed ? "seen" : t.received ? "received" : "sent"
                             }
                             </p>
                         }
-                        <p style={{ opacity: ".7", fontSize: "12px" }} className='mt5  ml10 mr10'>{new Date(t.createAt).toLocaleTimeString()}</p>
+                        <p style={{ opacity: ".7", fontSize:isWorkinOnPhone ?"9px": "12px" }} className='mt5  ml10 mr10'>{new Date(t.createAt).toLocaleTimeString()}</p>
                     </div>
                 </div>
             }
