@@ -15,7 +15,6 @@ function Reels() {
     const Reels_containerRef = useRef(null);
     const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
 
-
     const hande_keyboardClick = () => {
         document.addEventListener("keydown", (e) => {
             switch (e.key) {
@@ -36,14 +35,14 @@ function Reels() {
 
         if (reels.length == 0) {
             dispatch(StartBringing_Reels());
-        }   
-        
+        }
+       
         hande_keyboardClick();
     }, [])
 
 
     const handelScroll = (e) => {
-        
+
         setScrollTOP(e.target.scrollTop);
 
     }
@@ -73,7 +72,7 @@ function Reels() {
             <div onScroll={handelScroll} ref={Reels_containerRef} className='reels_slider'  >
                 {reels &&
                     reels.map((p, i) => {
-                        return <Reel onChoose={e => setcurrentIndeChooosed(e)} currentShoose={currentIndeChooosed} i={i} key={p._id} reel={p} />
+                        return <Reel onChoose={e => setcurrentIndeChooosed(e)} currentShoose={currentIndeChooosed} i={i} key={p._id} reel={p}  />
                     })
                 }
 

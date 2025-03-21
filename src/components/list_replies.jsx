@@ -18,9 +18,9 @@ function List_replies({ replies }) {
                         ReplayContent = ReplayContent.replace(/\?/g, "");
                     }
                     return <motion.div animate={{ y: [-10, 0], opacity: [0, 1], transition: { delay: i * .1 } }} key={l._id} className="r-s-s curP  br10 bg-l p10 mb20 " style={{ paddingRight: "30px" }}>
-                        <img onClick={() => dispatch(BringViewUserData(l.authorId))} src={l.author.profile_img} className='w40 h40 imgCercle' alt="" />
+                        <img onClick={() => dispatch(BringViewUserData(l.authorId))} src={l.author?.profile_img} className='w40 h40 imgCercle' alt="" />
                         <div className="c-s-s mb5 ml10">
-                            <strong onClick={() => dispatch(BringViewUserData(l.authorId))}>{l.author.FirstName} {l.author.LastName}</strong>
+                            <strong onClick={() => dispatch(BringViewUserData(l.authorId))}>{l.author?.FirstName} {l.author?.LastName}</strong>
                             <p className='' style={{ fontSize: "12px", opacity: .6 }}> {TimeAgo(l.createAt)}</p>
                             {isAIner ?
                                 <span className="ml20 mt20">

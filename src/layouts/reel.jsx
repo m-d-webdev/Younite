@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Abbreviator_text, GetShortNum } from '../components/Abbreviator'
+import Cookies from 'js-cookie'
 import Sound_mut from '../components/sound_mut'
 import { Post_menu } from '../slices/media/posts_menu'
 import { AnimatePresence } from 'framer-motion'
@@ -10,17 +11,16 @@ import Lottie from 'react-lottie'
 import LoveJsonLottie from '../resources/Animation - 1738693339844.json'
 import { getMoreReels, knowTheLength, toggleMuting } from '../slices/sections/reelsSlices'
 import { useDispatch, useSelector } from 'react-redux'
-const Reel = React.forwardRef(({ i, reel, h, onChoose, currentShoose }, ref) => {
-
-    const CnotanerRef = useRef(null)
-    const [isVideoPlaying, setVideoPlaying] = useState(true)
+const Reel = React.forwardRef(({ i, lastReelOpened, reel, h, onChoose, currentShoose }, ref) => {
+    const CnotanerRef = useRef(null);
+    const [isVideoPlaying, setVideoPlaying] = useState(true);
     const [reel_menu_vsbl, setreel_menu_vsbl] = useState(false);
-    const [num_cmnts, setnum_cmnts] = useState(reel.comments_count)
-    const [isLikeVisible, setisLikeVisible] = useState(false)
-    const [isShowing, setSHowing] = useState(true)
+    const [num_cmnts, setnum_cmnts] = useState(reel.comments_count);
+    const [isLikeVisible, setisLikeVisible] = useState(false);
+    const [isShowing, setSHowing] = useState(true);
     const { isMuted, isLoadingreels } = useSelector(s => s.Reels)
     const { isWorkinOnPhone } = useSelector(s => s.WindowSizeSlice);
-    const [reelHeight, setReelHeight] = useState(isWorkinOnPhone ? window.innerHeight - 40 : window.innerHeight - 80)
+    const [reelHeight, setReelHeight] = useState(isWorkinOnPhone ? window.innerHeight - 40 : window.innerHeight - 80);
 
     const UpdateReelHeight = () => {
         setReelHeight(isWorkinOnPhone ? window.innerHeight - 40 : window.innerHeight - 80);
@@ -57,12 +57,14 @@ const Reel = React.forwardRef(({ i, reel, h, onChoose, currentShoose }, ref) => 
                         onChoose(i)
                     }
                     reelRef.current?.play();
+                    localStorage.setItem("reels-last", reel._id)
                     document.addEventListener("keydown", handel_keyBord)
                 } else {
                     document.removeEventListener("keydown", handel_keyBord)
                     try {
                         reelRef.current?.pause();
-                    } catch (rtt) { }
+                    } catch (rtt) { };
+
                     clearTimeout(timeOuRmLiki);
                 }
             }, { threshold: .5 }
@@ -71,7 +73,20 @@ const Reel = React.forwardRef(({ i, reel, h, onChoose, currentShoose }, ref) => 
             observer.observe(CnotanerRef.current)
         }
 
-        window.addEventListener("resize", UpdateReelHeight)
+        window.addEventListener("resize", UpdateReelHeight);
+
+        if (localStorage.getItem("reels-last")) {
+            
+            if (localStorage.getItem("reels-last") === reel._id) {
+                
+                CnotanerRef.current?.scrollIntoView({
+                    block:"center",
+                    behavior:"instant"
+                    
+                })
+            }
+        }
+
         return () => {
             window.removeEventListener("resize", UpdateReelHeight)
             CnotanerRef.current && observer.unobserve(CnotanerRef.current)

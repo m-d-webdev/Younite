@@ -43,9 +43,9 @@ function Peopel_to_follow() {
                                             if (!following.includes(p._id)) {
                                                 return (
                                                     <motion.div animate={{ y: [-50, 0], opacity: [0, 1] }} key={p._id} className="wmia r-b-c p10 hoverEff1 br10">
-                                                        <div onClick={() => dispatch(BringViewUserData(p._id))} className="r-s-c">
-                                                            <img style={{ minWidth: "40px", minHeight: "40px" }} src={p.profile_img} alt="" className="w40 h40 imgCercle" />
-                                                            <strong className='ml10'> {p.FirstName} {p.LastName}</strong>
+                                                        <div onClick={() => dispatch(BringViewUserData(p._id))} className="r-s-c w-8/12">
+                                                            <img style={{ minWidth: "30px", minHeight: "30px" }} src={p.profile_img} alt="" className="w30 h30 imgCercle" />
+                                                            <strong className='ml10 truncate w-full '> {p.FirstName} {p.LastName}</strong>
                                                         </div>
                                                         <Btn_follow user_id={p._id} className={'bg-rev-l c-b'} />
                                                     </motion.div>
