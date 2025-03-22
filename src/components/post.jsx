@@ -106,8 +106,8 @@ const Post = React.forwardRef(({ postdata }, ref) => {
                             :
                             <div className={`PostImgsSection bg-third wmia  mt10 psr ${postdata.image.length == 2 ? `TwoImgs c-c-c` : " r-p-c"}`}>
                                 {postdata.image.map(i =>
-                                    <div className={`c-c-c wmia ${postdata.image.length == 2 ? `hkhmsin ` : ""} `}>
-                                        <Image src={i} key={i} onClick={() => { dispatch(open_zoomer(i)) }} className=' br10' alt="" style={{ maxWidth: "100%" }} />
+                                    <div className={`c-c-c wmia ${postdata.image.length == 2 ? ` ` : ""} `}>
+                                        <Image src={i} key={i} onClick={() => { dispatch(open_zoomer(i)) }} className=' br10' alt="" style={{ maxWidth: "100%" ,objectPosition:"center" }} />
                                     </div>
                                 )}
                             </div>

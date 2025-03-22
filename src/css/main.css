@@ -44,7 +44,6 @@
 }
 
 .MainOutlintsStyle {
-    /* max-width: 1200px; */
     overflow: auto;
     width: 90%;
     margin-left: 14px;
@@ -58,26 +57,21 @@
     max-width: 100%;
     object-fit: cover;
     object-position: top center;
-    /* color: rgba(0, 0, 0, 0.47); */
+    
     max-height: 800px;
 }
 
 .PostImgsSection.TwoImgs img {
     width: 100%;
     height: 100%;
-    max-height: none;
-
-    /* border: solid 1px; */
+    max-height: 400px;
+    margin-bottom: 5px;
 }
 
-.PostImgsSection.TwoImgs {
-    display: flex;
-    height: 600px;
-}
+
 
 
 .PostImgsSection.threeImgs .cntTwo_secondimgs img {
-    /* height: 49.7% !important; */
     object-fit: cover;
     border-radius: 10px;
 }
@@ -99,7 +93,6 @@
     width: 49.5%;
     height: 100%;
     max-height: none;
-    /* border: solid 1px; */
 }
 
 .PostImgsSection2.TwoImgs {
