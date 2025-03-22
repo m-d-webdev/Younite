@@ -11,7 +11,7 @@ const EditInfo = ({ onCLose }) => {
     const info = useSelector(s => s.Profile.data);
     const [firstName, setRirstName] = useState(info.FirstName)
     const [lastName, setlastName] = useState(info.LastName);
-    const UserDate = info.BirthDay?.split("-").map(r => Number(r));
+    const UserDate = info.BirthDay?.split("-").map(r => Number(r)) || [2000, 1, 1];
     const [year, setYear] = useState(UserDate[0]);
     const [month, setMonth] = useState(UserDate[1]);
     const [day, setDay] = useState(UserDate[2]);
